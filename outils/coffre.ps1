@@ -12,7 +12,7 @@
 $ErrorActionPreference = 'Continue'
 
 $Modele = 'https://github.com/EyenSama/ember-coffre-essai.git'
-$UrlScript = 'https://cdn.jsdelivr.net/gh/EyenSama/ember-coffre-essai@main/outils/coffre.ps1'
+$UrlScript = 'https://raw.githubusercontent.com/EyenSama/ember-coffre-essai/main/outils/coffre.ps1'
 $ZonesDefaut = '00-INDEX, 10-Inbox, 15-Cartes, 20-Notes, 30-Projets, 40-Journal, 50-Ressources'
 $CouleursZones = @('--e-bleu','--e-cyan','--e-peche','--e-vert','--e-lavande','--e-gris','--e-texte-structure')
 $dossierJournal = [Environment]::GetFolderPath('MyDocuments')
