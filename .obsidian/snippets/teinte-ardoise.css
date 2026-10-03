@@ -92,4 +92,10 @@
   --e-flou: blur(22px) saturate(140%);
   --e-bord: 1px solid rgba(var(--e-lisere-rgb), 0.10);
   --accent-h: 215; --accent-s: 22%; --accent-l: 62%;
+
+  /* liens et titres, puis le triplet du verre */
+  --e-lien-survol: #DDE2E9;
+  --e-h1: #FFFFFF;
+  --e-h1-accent: #F3F4F7;
+  --e-verre-rgb: 15, 21, 30;
 }

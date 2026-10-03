@@ -95,4 +95,9 @@
   --e-lisere-rgb: 150, 180, 255;
   --e-bordure-rgb: 140, 170, 255;
   --e-verre-rgb: 15, 19, 30;
+
+  /* liens et titres, puis le triplet du verre */
+  --e-lien-survol: #D2E0FF;
+  --e-h1: #FFFFFF;
+  --e-h1-accent: #EAF1FF;
 }
