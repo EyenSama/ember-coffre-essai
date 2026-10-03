@@ -1,0 +1,49 @@
+/* =====================================================================
+   socle.css — la mécanique commune à tous les coffres.
+   NE CONTIENT AUCUNE COULEUR : elles vivent dans teinte-<nom>.css.
+   INTERDIT : toute règle sur la structure du thème — jamais
+   `workspace-tab-header*`, jamais de hauteur, largeur, opacité ou overflow
+   visant une barre du thème. Le thème possède sa structure.
+   ===================================================================== */
+
+/* ---- 1. Polices — le thème Border n'en définit aucune ---- */
+body.theme-dark, body.theme-light, body {
+  --font-text: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
+  --font-interface: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+}
+
+/* ---- 2. Le texte des notes : justifié ---- */
+.markdown-preview-view p,
+.markdown-preview-view li,
+.cm-s-obsidian .cm-line {
+  text-align: justify !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* ---- 3. Ce qui ne doit JAMAIS être justifié ---- */
+.markdown-preview-view h1, .markdown-preview-view h2, .markdown-preview-view h3,
+.markdown-preview-view h4, .markdown-preview-view h5, .markdown-preview-view h6,
+.markdown-preview-view pre, .markdown-preview-view code, .markdown-preview-view table,
+.cm-s-obsidian .cm-line.HyperMD-header, .cm-s-obsidian .cm-line.HyperMD-codeblock,
+.cm-s-obsidian .cm-line.HyperMD-table-row, .callout-title {
+  text-align: left !important;
+  hyphens: none;
+}
+
+/* ---- 4. Le nom du fichier n'est pas répété au-dessus du titre ---- */
+body .inline-title,
+body .markdown-source-view .inline-title,
+body .markdown-preview-view .inline-title {
+  display: none !important;
+}
+
+/* ---- 5. Détails de finition ---- */
+.workspace-leaf-resize-handle { background-color: rgba(255, 255, 255, 0.05) !important; }
+a.internal-link { text-decoration: none; border-bottom: 1px solid currentColor; }
+.nav-file-title { color: #C3CCE2; }
+.nav-file-title.is-active { color: #FFFFFF !important; }
+.tag { border: none !important; border-radius: 999px; padding: 1px 9px; }

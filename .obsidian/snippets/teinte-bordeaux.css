@@ -1,0 +1,96 @@
+/* teinte — bordeaux (généré depuis le gabarit du skill obsidian-vault-deploy) */
+/* =====================================================================
+   Gabarit de teinte — à remplir, puis à déposer dans
+   <coffre>/.obsidian/snippets/teinte-<nom>.css et à déclarer dans
+   appearance.json → enabledCssSnippets (NOM SANS .css).
+
+   Règle : ce fichier ne contient QUE des couleurs.
+   La mécanique (surfaces, verre, polices, justification) vit dans socle.css.
+   Interdit : toute règle sur workspace-tab-header*, toute hauteur, largeur,
+   opacité ou overflow visant une barre du thème.
+
+   Spécificité : Border déclare ses variables sous body.theme-dark.
+   On reste donc au même niveau, jamais en dessous.
+   ===================================================================== */
+
+body.theme-dark, body.theme-light, body {
+
+  /* --- 1. Les huit teintes nommées (choisir une famille cohérente) --- */
+  --e-principal:   #D96A85;   /* couleur d'accent franche */
+  --e-principal-clair: #F0A9BC;
+  --e-secondaire:  #E9B078;   /* deuxième teinte, froide ou chaude selon la famille */
+  --e-tertiaire:   #A8C9A0;   /* troisième teinte */
+  --e-quatrieme:   #B9A7FF;
+  --e-cinquieme:   #7FD8E8;
+  --e-gris:        #8A7E86;   /* neutre, pour l'inbox */
+  --e-texte:       #F2E6EA;   /* texte sur fond sombre : garder clair */
+
+  /* --- 2. Le ton de base --- */
+  --accent-h: 348; --accent-s: 62%; --accent-l: 68%;   /* HSL de l'accent */
+  --text-muted:  #C0A8B2;
+  --text-faint:  #8E7C86;
+
+  /* --- 3. Les liens et l'accent, y compris pour le thème Border --- */
+  --link-color: var(--e-principal-clair);
+  --link-color-hover: #FBD3DE;
+  --color-accent-1: var(--e-principal) !important;
+  --color-accent-2: var(--e-secondaire) !important;
+  --text-accent: var(--e-principal-clair) !important;
+  --text-accent-hover: #FBD3DE !important;
+
+  /* --- 4. Les titres : texte, puis le trait dessiné à leur gauche --- */
+  --h1-color: #FFF5F7;
+  --h2-color: var(--e-principal-clair);
+  --h3-color: var(--e-secondaire);
+  --h4-color: var(--e-tertiaire);
+  --h5-color: var(--e-quatrieme);
+  --h6-color: var(--e-cinquieme);
+  --h1-accent-color: #FBD9E2 !important;   /* le trait : Border prend --hN-accent-color */
+  --h2-accent-color: var(--e-principal-clair) !important;
+  --h3-accent-color: var(--e-secondaire) !important;
+  --h4-accent-color: var(--e-tertiaire) !important;
+  --h5-accent-color: var(--e-quatrieme) !important;
+  --h6-accent-color: var(--e-cinquieme) !important;
+}
+
+/* --- 5. Le fond : une nuit teintée, trois halos --- */
+body, .app-container, .horizontal-main-container {
+  background:
+    radial-gradient(1200px 820px at 10% -12%, rgba(200,70,110, 0.20), transparent 62%),
+    radial-gradient(900px 700px at 112% 18%, rgba(233,176,120, 0.11), transparent 55%),
+    radial-gradient(1000px 900px at 45% 122%, rgba(150,120,200, 0.07), transparent 60%),
+    #150A0F !important;   /* base opaque — jamais transparente, sinon le système grise tout */
+}
+
+/* --- 6. Les zones : la couleur du dossier, DEUX fois (ligne + contenu) --- */
+body .nav-folder-title[data-path="00-INDEX"]      { color: #FFFFFF !important; }
+body .nav-folder-title[data-path="00-INDEX"] .nav-folder-title-content { color: #FFFFFF !important; }
+body .nav-folder-title[data-path="10-Inbox"]      { color: var(--e-gris) !important; }
+body .nav-folder-title[data-path="10-Inbox"] .nav-folder-title-content { color: var(--e-gris) !important; }
+body .nav-folder-title[data-path="15-Cartes"]     { color: var(--e-principal) !important; font-weight: 700; }
+body .nav-folder-title[data-path="15-Cartes"] .nav-folder-title-content { color: var(--e-principal) !important; }
+body .nav-folder-title[data-path="20-Notes"]      { color: var(--e-principal-clair) !important; }
+body .nav-folder-title[data-path="20-Notes"] .nav-folder-title-content { color: var(--e-principal-clair) !important; }
+body .nav-folder-title[data-path="30-Projets"]    { color: var(--e-cinquieme) !important; }
+body .nav-folder-title[data-path="30-Projets"] .nav-folder-title-content { color: var(--e-cinquieme) !important; }
+body .nav-folder-title[data-path="40-Journal"]    { color: var(--e-secondaire) !important; }
+body .nav-folder-title[data-path="40-Journal"] .nav-folder-title-content { color: var(--e-secondaire) !important; }
+body .nav-folder-title[data-path="50-Ressources"] { color: var(--e-tertiaire) !important; }
+body .nav-folder-title[data-path="50-Ressources"] .nav-folder-title-content { color: var(--e-tertiaire) !important; }
+
+/* --- 7. Les étiquettes : une pastille par famille --- */
+.tag { border: none !important; border-radius: 999px; padding: 1px 9px; }
+.tag[href="#type/carte"]     { background-color: rgba(255,255,255,0.18); color: var(--e-principal); }
+.tag[href="#type/journal"]   { background-color: rgba(255,255,255,0.16); color: var(--e-secondaire); }
+.tag[href="#type/projet"]    { background-color: rgba(255,255,255,0.16); color: var(--e-cinquieme); }
+.tag[href="#type/ressource"] { background-color: rgba(255,255,255,0.16); color: var(--e-tertiaire); }
+.tag[href="#type/note"]      { background-color: rgba(127,132,156,0.20); color: #BCC4D6; }
+
+/* --- 8. Les surfaces : opaques, dans le ton de la teinte --- */
+body.theme-dark, body.theme-light, body {
+  --background-primary: #1A0E15 !important;
+  --background-secondary: #150C12 !important;
+  --background-primary-alt: #190D13 !important;
+  --background-secondary-alt: #150C12 !important;
+  --background-tertiary: #190D13 !important;
+}

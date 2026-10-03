@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Border",
+  "accentColor": "#6E9BFF",
+  "theme": "obsidian",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "socle",
+    "teinte-bleu"
+  ]
+}
