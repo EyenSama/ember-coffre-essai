@@ -76,7 +76,7 @@ try {
         if ($code -ne 0) { throw ('Le clone a echoue (code {0}).' -f $code) }
     }
 
-    $snippets = Join-Path $cible '.obsidian' 'snippets'
+    $snippets = Join-Path (Join-Path $cible '.obsidian') 'snippets'
     if (-not (Test-Path $snippets)) { throw 'Le modele est incomplet : dossier des extraits introuvable.' }
 
     $fichiers = Get-ChildItem $snippets -Filter 'teinte-*.css' | Sort-Object Name
@@ -146,14 +146,14 @@ try {
     [System.IO.File]::WriteAllText($fTeinte, (($gardees -join "`n").TrimEnd() + "`r`n" + $bloc), $Enc)
 
     # les reglages
-    $fApp = Join-Path $cible '.obsidian' 'appearance.json'
+    $fApp = Join-Path (Join-Path $cible '.obsidian') 'appearance.json'
     $app = [System.IO.File]::ReadAllText($fApp, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
     $app.cssTheme = 'Border'
     $app.accentColor = $accentTeinte
     $app.enabledCssSnippets = @('socle', ('teinte-' + $teinte))
     [System.IO.File]::WriteAllText($fApp, ($app | ConvertTo-Json -Depth 5), $Enc)
 
-    $fApp2 = Join-Path $cible '.obsidian' 'app.json'
+    $fApp2 = Join-Path (Join-Path $cible '.obsidian') 'app.json'
     $app2 = [System.IO.File]::ReadAllText($fApp2, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
     $app2.showInlineTitle = $false
     [System.IO.File]::WriteAllText($fApp2, ($app2 | ConvertTo-Json -Depth 5), $Enc)
