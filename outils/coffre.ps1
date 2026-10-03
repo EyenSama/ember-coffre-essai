@@ -13,6 +13,7 @@ $ErrorActionPreference = 'Continue'
 
 # le dépôt public : clonable sans identifiant, même contenu que le modèle
 $Modele = 'https://github.com/EyenSama/ember-coffre-essai.git'
+$UrlScript = 'https://raw.githubusercontent.com/EyenSama/ember-coffre-essai/main/outils/coffre.ps1'
 $ZonesDefaut = '00-INDEX, 10-Inbox, 15-Cartes, 20-Notes, 30-Projets, 40-Journal, 50-Ressources'
 $CouleursZones = @('--e-bleu','--e-cyan','--e-peche','--e-vert','--e-lavande','--e-gris','--e-texte-structure')
 $Journal = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'coffre-journal.txt'
@@ -156,8 +157,17 @@ try {
         $c = Join-Path $cible $doc
         if (Test-Path $c) { Remove-Item $c -Force }
     }
-    # on laisse le script dans le coffre : le relancer suffira à le remettre à jour
-    try { Copy-Item $PSCommandPath (Join-Path $cible 'Mettre a jour le coffre.ps1') -Force } catch { }
+    # on laisse le script dans le coffre : le relancer suffira à le remettre à jour.
+    # Collé dans un terminal, le script ignore d'où il vient : il se retélécharge alors lui-même.
+    $copie = Join-Path $cible 'Mettre a jour le coffre.ps1'
+    try {
+        if ($PSCommandPath -and (Test-Path $PSCommandPath)) {
+            Copy-Item $PSCommandPath $copie -Force
+        } else {
+            Invoke-WebRequest -Uri $UrlScript -OutFile $copie -UseBasicParsing
+        }
+        Note '    Une copie du script est dans le coffre : « Mettre a jour le coffre.ps1 ».'
+    } catch { Note '    (La copie du script dans le coffre n a pas pu etre faite.)' 'DarkGray' }
 
     Note ''
     Note '  C''est prêt.' 'Green'
