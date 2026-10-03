@@ -41,7 +41,7 @@ Note ''
 
 try {
     $DefautBase = (Get-Location).Path
-    $interdit = @($env:SystemRoot, $env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:USERPROFILE) | Where-Object { $_ }
+    $interdit = @($env:SystemRoot, $env:ProgramFiles, ${env:ProgramFiles(x86)}) | Where-Object { $_ }
     foreach ($i in $interdit) { if ($DefautBase -like ($i + '*')) { $DefautBase = [Environment]::GetFolderPath('MyDocuments'); break } }
     $base = Read-Host "  Dossier où poser le coffre (Entrée = $DefautBase)"
     if ([string]::IsNullOrWhiteSpace($base)) { $base = $DefautBase }
