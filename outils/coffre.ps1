@@ -118,7 +118,7 @@ try {
     foreach ($z in ($zonesSaisie -split ',')) {
         $propre = $z.Trim()
         if ($propre -eq '') { continue }
-        if ($propre -notmatch '^[A-Za-z0-9][A-Za-z0-9 ._-]{0,40}$') { throw ('Dossier invalide : {0}' -f $propre) }
+        if ($propre -notmatch '^[\p{L}\p{N}][\p{L}\p{N} ._-]{0,40}$') { throw ('Dossier invalide : {0}' -f $propre) }
         $zones += $propre
     }
     if ($zones.Count -eq 0) { throw 'Aucun dossier valide.' }
