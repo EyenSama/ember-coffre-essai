@@ -34,7 +34,7 @@ function Git($arguments, $dossier) {
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch { }
 
 Note ''
-Note '  Déploiement d''un coffre Obsidian' 'Cyan'
+Note '  Deploiement d'un coffre Obsidian' 'Cyan'
 Note '  ---------------------------------'
 Note ("  Journal : " + $Journal) 'DarkGray'
 Note ''
@@ -145,12 +145,12 @@ try {
     Get-ChildItem $cible -Directory | Where-Object { $_.Name -notmatch '^\.' } | ForEach-Object { Remove-Item $_.FullName -Recurse -Force }
     foreach ($z in $zones) { if ($z -ne '00-INDEX') { New-Item -ItemType Directory -Path (Join-Path $cible $z.TrimEnd('/')) -Force | Out-Null } }
     [System.IO.File]::WriteAllText((Join-Path $cible '00-INDEX.md'),
-        "# Index`r`n`r`nLa porte du coffre « $nom ». Elle ne mène qu'à l'essentiel.`r`n`r`n- [[Bienvenue]]`r`n", $enc)
+        "# Index`r`n`r`nLa porte du coffre " + $nom + ". Elle ne mène qu'à l'essentiel.`r`n`r`n- [[Bienvenue]]`r`n", $enc)
     $premiere = ($zones | Where-Object { $_ -ne '00-INDEX' } | Select-Object -First 1)
     if ($premiere) {
         New-Item -ItemType Directory -Path (Join-Path $cible $premiere) -Force | Out-Null
         [System.IO.File]::WriteAllText((Join-Path $cible "$premiere\Bienvenue.md"),
-            "# Bienvenue`r`n`r`n#type/note`r`n`r`nLe coffre « $nom » est prêt. Teinte : $($teinte.Nom).`r`n", $enc)
+            "# Bienvenue`r`n`r`n#type/note`r`n`r`nLe coffre " + $nom + " est prêt. Teinte : $($teinte.Nom).`r`n", $enc)
     }
 
     foreach ($doc in @('MODE-D-EMPLOI.md','LICENCE-TIERS.md')) {
@@ -166,16 +166,19 @@ try {
         } else {
             Invoke-WebRequest -Uri $UrlScript -OutFile $copie -UseBasicParsing
         }
-        Note '    Une copie du script est dans le coffre : « Mettre a jour le coffre.ps1 ».'
+        Note '    Une copie du script est dans le coffre : " + Mettre a jour le coffre.ps1 + ".'
     } catch { Note '    (La copie du script dans le coffre n a pas pu etre faite.)' 'DarkGray' }
 
     Note ''
-    Note '  C''est prêt.' 'Green'
+    $nomTeinte = $teinte.Nom
+    $accentTeinte = $teinte.Accent
+    $zonesTexte = ($zones -join ', ')
+    Note '  C est pret.' 'Green'
     Note "    Coffre   : $cible"
-    Note "    Teinte   : $($teinte.Nom) ($($teinte.Accent))"
-    Note "    Dossiers : $($zones -join ', ')"
+    Note "    Teinte   : $nomTeinte  $accentTeinte"
+    Note "    Dossiers : $zonesTexte"
     Note ''
-    Note '  Dans Obsidian : « Ouvrir un dossier comme coffre », puis choisis ce dossier.'
+    Note '  Dans Obsidian : " + Ouvrir un dossier comme coffre + ", puis choisis ce dossier.'
     Note '  Relance ce script quand tu veux : git pull, puis ta teinte réappliquée.'
 }
 catch {
