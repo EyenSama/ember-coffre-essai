@@ -1,96 +1,98 @@
-/* teinte — bleu (généré depuis le gabarit du skill obsidian-vault-deploy) */
 /* =====================================================================
-   Gabarit de teinte — à remplir, puis à déposer dans
-   <coffre>/.obsidian/snippets/teinte-<nom>.css et à déclarer dans
-   appearance.json → enabledCssSnippets (NOM SANS .css).
-
-   Règle : ce fichier ne contient QUE des couleurs.
-   La mécanique (surfaces, verre, polices, justification) vit dans socle.css.
-   Interdit : toute règle sur workspace-tab-header*, toute hauteur, largeur,
-   opacité ou overflow visant une barre du thème.
-
-   Spécificité : Border déclare ses variables sous body.theme-dark.
-   On reste donc au même niveau, jamais en dessous.
+   teinte — bleu
+   la référence — ton coffre actuel
+   Un fichier = une couleur. La mécanique vit dans socle.css.
+   Pour changer la teinte d'un coffre : Apparence → Extraits CSS.
    ===================================================================== */
+.theme-dark, .theme-light {
+  /* les huit tons de la famille */
+  --e-bleu: #6E9BFF;
+  --e-bleu-rgb: 110, 155, 255;
+  --e-bleu-clair: #A8C7FF;
+  --e-bleu-clair-rgb: 168, 199, 255;
+  --e-cyan: #7FD8E8;
+  --e-cyan-rgb: 127, 216, 232;
+  --e-vert: #A6E3A1;
+  --e-vert-rgb: 166, 227, 161;
+  --e-peche: #FAB387;
+  --e-peche-rgb: 250, 179, 135;
+  --e-lavande: #B9A7FF;
+  --e-lavande-rgb: 185, 167, 255;
+  --e-gris: #7F849C;
+  --e-gris-rgb: 127, 132, 156;
+  --e-texte: #E4E9F5;
+  --e-texte-rgb: 228, 233, 245;
 
-body.theme-dark, body.theme-light, body {
+  /* textes */
+  --e-texte-clair: #C3CCE2;
+  --e-texte-clair-rgb: 195, 204, 226;
+  --e-texte-secondaire: #BCC4D6;
+  --e-texte-secondaire-rgb: 188, 196, 214;
+  --e-texte-structure: #8A96B4;
+  --e-texte-structure-rgb: 138, 150, 180;
+  --text-muted: #A3AEC6;
+  --text-muted-rgb: 163, 174, 198;
+  --text-faint: #808CA8;
+  --text-faint-rgb: 128, 140, 168;
 
-  /* --- 1. Les huit teintes nommées (choisir une famille cohérente) --- */
-  --e-principal:   #6E9BFF;   /* couleur d'accent franche */
-  --e-principal-clair: #A8C7FF;
-  --e-secondaire:  #7FD8E8;   /* deuxième teinte, froide ou chaude selon la famille */
-  --e-tertiaire:   #A6E3A1;   /* troisième teinte */
-  --e-quatrieme:   #B9A7FF;
-  --e-cinquieme:   #FAB387;
-  --e-gris:        #7F849C;   /* neutre, pour l'inbox */
-  --e-texte:       #E4E9F5;   /* texte sur fond sombre : garder clair */
+  /* surfaces — opaques : un fond transparent laisse griser par le système */
+  --e-fond: #080C15;
+  --e-fond-rgb: 8, 12, 21;
+  --e-fond-alt: #090C15;
+  --e-fond-alt-rgb: 9, 12, 21;
+  --e-surface: #0A0E18;
+  --e-surface-rgb: 10, 14, 24;
+  --e-panneau: #0C111D;
+  --e-panneau-rgb: 12, 17, 29;
+  --e-panneau-clair: #0C111D;
+  --e-panneau-clair-rgb: 12, 17, 29;
 
-  /* --- 2. Le ton de base --- */
-  --accent-h: 220; --accent-s: 100%; --accent-l: 70%;   /* HSL de l'accent */
-  --text-muted:  #A3AEC6;
-  --text-faint:  #808CA8;
+  /* halos et liserés */
+  --e-halo: 70, 120, 255;
+  --e-lisere: 150, 180, 255;
+  --e-bordure: 140, 170, 255;
+  --e-verre: 15, 19, 30;
 
-  /* --- 3. Les liens et l'accent, y compris pour le thème Border --- */
-  --link-color: var(--e-principal-clair);
-  --link-color-hover: #D2E0FF;
-  --color-accent-1: var(--e-principal) !important;
-  --color-accent-2: var(--e-secondaire) !important;
-  --text-accent: var(--e-principal-clair) !important;
-  --text-accent-hover: #D2E0FF !important;
+  /* le verre et les liens */
+  --background-primary: rgba(var(--e-verre-rgb), 0.72);
+  --background-secondary: rgba(var(--e-verre-rgb), 0.60);
+  --background-primary-alt: rgba(var(--e-verre-rgb), 0.55);
+  --background-modifier-border: rgba(var(--e-bordure-rgb), 0.14);
+  --background-modifier-hover: rgba(var(--e-bleu-rgb), 0.10);
+  --link-color: var(--e-bleu-clair);
+  --link-color-hover: var(--e-lien-survol);
+  --h1-color: var(--e-h1); --h2-color: var(--e-bleu-clair); --h3-color: var(--e-cyan);
+  --h4-color: var(--e-vert); --h5-color: var(--e-lavande); --h6-color: var(--e-peche);
 
-  /* --- 4. Les titres : texte, puis le trait dessiné à leur gauche --- */
-  --h1-color: #FFFFFF;
-  --h2-color: var(--e-principal-clair);
-  --h3-color: var(--e-secondaire);
-  --h4-color: var(--e-tertiaire);
-  --h5-color: var(--e-quatrieme);
-  --h6-color: var(--e-cinquieme);
-  --h1-accent-color: #EAF1FF !important;   /* le trait : Border prend --hN-accent-color */
-  --h2-accent-color: var(--e-principal-clair) !important;
-  --h3-accent-color: var(--e-secondaire) !important;
-  --h4-accent-color: var(--e-tertiaire) !important;
-  --h5-accent-color: var(--e-quatrieme) !important;
-  --h6-accent-color: var(--e-cinquieme) !important;
-}
+  /* variables du thème Border : liens, accents et titres passent par là */
+  --color-accent-1: var(--e-bleu) !important;
+  --color-accent-2: var(--e-cyan) !important;
+  --text-accent: var(--e-bleu-clair) !important;
+  --text-accent-hover: var(--e-lien-survol) !important;
+  --h1-accent-color: var(--e-h1-accent) !important;
+  --h2-accent-color: var(--e-bleu-clair) !important;
+  --h3-accent-color: var(--e-cyan) !important;
+  --h4-accent-color: var(--e-vert) !important;
+  --h5-accent-color: var(--e-lavande) !important;
+  --h6-accent-color: var(--e-peche) !important;
+  --color-accent-1-rgb: var(--e-bleu-rgb);
+  --h2-accent-color-rgb: var(--e-bleu-clair-rgb);
+  --h3-accent-color-rgb: var(--e-cyan-rgb);
+  --h4-accent-color-rgb: var(--e-vert-rgb);
+  --h5-accent-color-rgb: var(--e-lavande-rgb);
+  --h6-accent-color-rgb: var(--e-peche-rgb);
 
-/* --- 5. Le fond : une nuit teintée, trois halos --- */
-body, .app-container, .horizontal-main-container {
-  background:
-    radial-gradient(1200px 820px at 10% -12%, rgba(70,120,255, 0.20), transparent 62%),
-    radial-gradient(900px 700px at 112% 18%, rgba(127,216,232, 0.11), transparent 55%),
-    radial-gradient(1000px 900px at 45% 122%, rgba(185,167,255, 0.07), transparent 60%),
-    #080C15 !important;   /* base opaque — jamais transparente, sinon le système grise tout */
-}
+  /* constantes d'aspect : Border n'embarque aucune police */
+  --font-text: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
+  --font-interface: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
+  --radius-s: 8px; --radius-m: 12px; --radius-l: 16px;
+  --e-flou: blur(22px) saturate(140%);
+  --e-bord: 1px solid rgba(var(--e-lisere-rgb), 0.10);
+  --accent-h: 220; --accent-s: 100%; --accent-l: 71%;
 
-/* --- 6. Les zones : la couleur du dossier, DEUX fois (ligne + contenu) --- */
-body .nav-folder-title[data-path="00-INDEX"]      { color: #FFFFFF !important; }
-body .nav-folder-title[data-path="00-INDEX"] .nav-folder-title-content { color: #FFFFFF !important; }
-body .nav-folder-title[data-path="10-Inbox"]      { color: var(--e-gris) !important; }
-body .nav-folder-title[data-path="10-Inbox"] .nav-folder-title-content { color: var(--e-gris) !important; }
-body .nav-folder-title[data-path="15-Cartes"]     { color: var(--e-principal) !important; font-weight: 700; }
-body .nav-folder-title[data-path="15-Cartes"] .nav-folder-title-content { color: var(--e-principal) !important; }
-body .nav-folder-title[data-path="20-Notes"]      { color: var(--e-principal-clair) !important; }
-body .nav-folder-title[data-path="20-Notes"] .nav-folder-title-content { color: var(--e-principal-clair) !important; }
-body .nav-folder-title[data-path="30-Projets"]    { color: var(--e-cinquieme) !important; }
-body .nav-folder-title[data-path="30-Projets"] .nav-folder-title-content { color: var(--e-cinquieme) !important; }
-body .nav-folder-title[data-path="40-Journal"]    { color: var(--e-secondaire) !important; }
-body .nav-folder-title[data-path="40-Journal"] .nav-folder-title-content { color: var(--e-secondaire) !important; }
-body .nav-folder-title[data-path="50-Ressources"] { color: var(--e-tertiaire) !important; }
-body .nav-folder-title[data-path="50-Ressources"] .nav-folder-title-content { color: var(--e-tertiaire) !important; }
-
-/* --- 7. Les étiquettes : une pastille par famille --- */
-.tag { border: none !important; border-radius: 999px; padding: 1px 9px; }
-.tag[href="#type/carte"]     { background-color: rgba(255,255,255,0.18); color: var(--e-principal); }
-.tag[href="#type/journal"]   { background-color: rgba(255,255,255,0.16); color: var(--e-secondaire); }
-.tag[href="#type/projet"]    { background-color: rgba(255,255,255,0.16); color: var(--e-cinquieme); }
-.tag[href="#type/ressource"] { background-color: rgba(255,255,255,0.16); color: var(--e-tertiaire); }
-.tag[href="#type/note"]      { background-color: rgba(127,132,156,0.20); color: #BCC4D6; }
-
-/* --- 8. Les surfaces : opaques, dans le ton de la teinte --- */
-body.theme-dark, body.theme-light, body {
-  --background-primary: #0B0F19 !important;
-  --background-secondary: #090C15 !important;
-  --background-primary-alt: #0C111D !important;
-  --background-secondary-alt: #090C15 !important;
-  --background-tertiary: #0C111D !important;
+  /* les triplets que le socle et le verre réclament */
+  --e-halo-rgb: 70, 120, 255;
+  --e-lisere-rgb: 150, 180, 255;
+  --e-bordure-rgb: 140, 170, 255;
+  --e-verre-rgb: 15, 19, 30;
 }

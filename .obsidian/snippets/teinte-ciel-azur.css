@@ -1,60 +1,60 @@
 /* =====================================================================
-   teinte — violet
-   franc
+   teinte — ciel azur
+   clair et lumineux
    Un fichier = une couleur. La mécanique vit dans socle.css.
    Pour changer la teinte d'un coffre : Apparence → Extraits CSS.
    ===================================================================== */
 .theme-dark, .theme-light {
   /* les huit tons de la famille */
-  --e-bleu: #B374E7;
-  --e-bleu-rgb: 179, 116, 231;
-  --e-bleu-clair: #D0A8F0;
-  --e-bleu-clair-rgb: 208, 168, 240;
-  --e-cyan: #8E8ED7;
-  --e-cyan-rgb: 142, 142, 215;
-  --e-vert: #ABD9D1;
-  --e-vert-rgb: 171, 217, 209;
-  --e-peche: #D0E896;
-  --e-peche-rgb: 208, 232, 150;
-  --e-lavande: #F2B5EC;
-  --e-lavande-rgb: 242, 181, 236;
-  --e-gris: #927D9B;
-  --e-gris-rgb: 146, 125, 155;
-  --e-texte: #EEE8F3;
-  --e-texte-rgb: 238, 232, 243;
+  --e-bleu: #8CD7F8;
+  --e-bleu-rgb: 140, 215, 248;
+  --e-bleu-clair: #C5EBFB;
+  --e-bleu-clair-rgb: 197, 235, 251;
+  --e-cyan: #84E1CA;
+  --e-cyan-rgb: 132, 225, 202;
+  --e-vert: #BDDFA5;
+  --e-vert-rgb: 189, 223, 165;
+  --e-peche: #F3918C;
+  --e-peche-rgb: 243, 145, 140;
+  --e-lavande: #AEB9FA;
+  --e-lavande-rgb: 174, 185, 250;
+  --e-gris: #7D8E9B;
+  --e-gris-rgb: 125, 142, 155;
+  --e-texte: #E8EFF3;
+  --e-texte-rgb: 232, 239, 243;
 
   /* textes */
-  --e-texte-clair: #D2C4DE;
-  --e-texte-clair-rgb: 210, 196, 222;
-  --e-texte-secondaire: #CBBED5;
-  --e-texte-secondaire-rgb: 203, 190, 213;
-  --e-texte-structure: #A08DB0;
-  --e-texte-structure-rgb: 160, 141, 176;
-  --text-muted: #B7A3C8;
-  --text-muted-rgb: 183, 163, 200;
-  --text-faint: #9681A7;
-  --text-faint-rgb: 150, 129, 167;
+  --e-texte-clair: #C4D6DE;
+  --e-texte-clair-rgb: 196, 214, 222;
+  --e-texte-secondaire: #BECED5;
+  --e-texte-secondaire-rgb: 190, 206, 213;
+  --e-texte-structure: #8DA5B0;
+  --e-texte-structure-rgb: 141, 165, 176;
+  --text-muted: #A3BCC8;
+  --text-muted-rgb: 163, 188, 200;
+  --text-faint: #819CA7;
+  --text-faint-rgb: 129, 156, 167;
 
   /* surfaces — opaques : un fond transparent laisse griser par le système */
-  --e-fond: #0F0815;
-  --e-fond-rgb: 15, 8, 21;
-  --e-fond-alt: #100915;
-  --e-fond-alt-rgb: 16, 9, 21;
-  --e-surface: #120A18;
-  --e-surface-rgb: 18, 10, 24;
-  --e-panneau: #150C1D;
-  --e-panneau-rgb: 21, 12, 29;
-  --e-panneau-clair: #150C1D;
-  --e-panneau-clair-rgb: 21, 12, 29;
+  --e-fond: #081115;
+  --e-fond-rgb: 8, 17, 21;
+  --e-fond-alt: #091215;
+  --e-fond-alt-rgb: 9, 18, 21;
+  --e-surface: #0A1418;
+  --e-surface-rgb: 10, 20, 24;
+  --e-panneau: #0C181D;
+  --e-panneau-rgb: 12, 24, 29;
+  --e-panneau-clair: #0C181D;
+  --e-panneau-clair-rgb: 12, 24, 29;
 
   /* halos et liserés */
-  --e-halo: #B263E3;
-  --e-halo-rgb: 178, 99, 227;
-  --e-lisere: #D1A4EF;
-  --e-lisere-rgb: 209, 164, 239;
-  --e-bordure: #CD9BED;
-  --e-bordure-rgb: 205, 155, 237;
-  --e-verre: 23, 15, 30;
+  --e-halo: #52B9F4;
+  --e-halo-rgb: 82, 185, 244;
+  --e-lisere: #9AD8F9;
+  --e-lisere-rgb: 154, 216, 249;
+  --e-bordure: #91D4F8;
+  --e-bordure-rgb: 145, 212, 248;
+  --e-verre: 15, 25, 30;
 
   /* le verre et les liens */
   --background-primary: rgba(var(--e-verre-rgb), 0.72);
@@ -91,5 +91,5 @@
   --radius-s: 8px; --radius-m: 12px; --radius-l: 16px;
   --e-flou: blur(22px) saturate(140%);
   --e-bord: 1px solid rgba(var(--e-lisere-rgb), 0.10);
-  --accent-h: 273; --accent-s: 70%; --accent-l: 68%;
+  --accent-h: 198; --accent-s: 88%; --accent-l: 76%;
 }

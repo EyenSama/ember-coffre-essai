@@ -1,49 +1,193 @@
 /* =====================================================================
-   socle.css — la mécanique commune à tous les coffres.
-   NE CONTIENT AUCUNE COULEUR : elles vivent dans teinte-<nom>.css.
-   INTERDIT : toute règle sur la structure du thème — jamais
-   `workspace-tab-header*`, jamais de hauteur, largeur, opacité ou overflow
-   visant une barre du thème. Le thème possède sa structure.
+   socle — la mécanique commune à tous les coffres de la maison
+   Aucune couleur ici : elles vivent dans le fichier de teinte.
+   Base : thème Border · verre sombre · texte justifié
+
+   INTERDIT, pour ne pas refaire l'erreur : aucune règle sur la barre
+   d'onglets (hauteur, largeur, opacité, visibilité du titre). Elles
+   empêchaient le titre de s'afficher. Le thème Border gère ses onglets
+   seul. Ne plus jamais toucher aux onglets ici.
    ===================================================================== */
 
-/* ---- 1. Polices — le thème Border n'en définit aucune ---- */
-body.theme-dark, body.theme-light, body {
-  --font-text: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
-  --font-interface: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif !important;
-  --radius-s: 8px;
-  --radius-m: 12px;
-  --radius-l: 16px;
+/* =====================================================================
+   Second cerveau Y-Ember — notre empreinte
+   Base : thème Border · pastels froids · verre sombre
+   Écrite par Ember.
+
+   HISTORIQUE, pour ne pas refaire l'erreur : j'avais ajouté des règles
+   sur la barre d'onglets (hauteur, largeur, opacité, visibilité du titre).
+   Elles empêchaient le titre des onglets de s'afficher. Elles sont
+   RETIRÉES le 03/10 — le thème Border gère ses onglets très bien seul.
+   Ne plus jamais toucher aux onglets ici.
+   ===================================================================== */
+
+/* ---- 1. La palette : pastels froids, dominante bleue ---- */
+
+/* ---- 2. Le fond : une nuit bleue, trois halos ---- */
+body, .app-container, .horizontal-main-container {
+  background:
+    radial-gradient(1200px 820px at 10% -12%, rgba(var(--e-halo-rgb), 0.20), transparent 62%),
+    radial-gradient(900px 700px at 112% 18%, rgba(var(--h3-accent-color-rgb), 0.11), transparent 55%),
+    radial-gradient(1000px 900px at 45% 122%, rgba(var(--h5-accent-color-rgb), 0.07), transparent 60%),
+    var(--e-fond) !important;
 }
 
-/* ---- 2. Le texte des notes : justifié ---- */
-.markdown-preview-view p,
-.markdown-preview-view li,
-.cm-s-obsidian .cm-line {
-  text-align: justify !important;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+/* ---- 3. Le verre ---- */
+.workspace-leaf, .modal, .menu, .prompt,
+.suggestion-container, .status-bar, .side-dock-ribbon {
+  background-color: var(--background-primary) !important;
+  backdrop-filter: var(--e-flou);
+  -webkit-backdrop-filter: var(--e-flou);
 }
+.workspace-leaf-resize-handle { background-color: rgba(var(--e-lisere-rgb), 0.06) !important; }
 
-/* ---- 3. Ce qui ne doit JAMAIS être justifié ---- */
+/* ---- 4. Les zones, par la couleur (le même code que le graphe) ---- */
+.nav-folder-title-content { color: inherit !important; }
+.nav-file-title { color: var(--e-texte-clair); }
+.nav-file-title.is-active { color: var(--h1-color) !important; }
+
+/* ---- 5. Les étiquettes ---- */
+.tag { border: none !important; border-radius: 999px; padding: 1px 9px; }
+.tag[href="#type/carte"]     { background-color: rgba(var(--color-accent-1-rgb), 0.18); color: var(--e-bleu); }
+.tag[href="#type/journal"]   { background-color: rgba(var(--h3-accent-color-rgb), 0.16); color: var(--e-cyan); }
+.tag[href="#type/projet"]    { background-color: rgba(var(--h6-accent-color-rgb), 0.16); color: var(--e-peche); }
+.tag[href="#type/ressource"] { background-color: rgba(var(--h4-accent-color-rgb), 0.16); color: var(--e-vert); }
+.tag[href="#type/note"]      { background-color: rgba(var(--e-gris-rgb), 0.20); color: var(--e-texte-secondaire); }
+
+/* ---- 6. Le texte des notes : justifié ---- */
+.markdown-preview-view p, .markdown-preview-view li { text-align: justify !important; hyphens: auto; }
+.cm-s-obsidian .cm-line { text-align: justify !important; hyphens: auto; }
 .markdown-preview-view h1, .markdown-preview-view h2, .markdown-preview-view h3,
 .markdown-preview-view h4, .markdown-preview-view h5, .markdown-preview-view h6,
 .markdown-preview-view pre, .markdown-preview-view code, .markdown-preview-view table,
 .cm-s-obsidian .cm-line.HyperMD-header, .cm-s-obsidian .cm-line.HyperMD-codeblock,
 .cm-s-obsidian .cm-line.HyperMD-table-row, .callout-title {
-  text-align: left !important;
-  hyphens: none;
+  text-align: left !important; hyphens: none;
 }
 
-/* ---- 4. Le nom du fichier n'est pas répété au-dessus du titre ---- */
+/* ---- 7. Détails ---- */
+a.internal-link { text-decoration: none; border-bottom: 1px solid rgba(var(--h2-accent-color-rgb), 0.25); }
+a.internal-link:hover { border-bottom-color: var(--e-bleu-clair); }
+/* le nom du fichier n'est plus répété en haut de note */
+.inline-title { display: none !important; }
+
+/* =====================================================================
+   v9 — pourquoi mes couleurs perdaient, et la correction
+   Border déclare ses variables d'accent sous « body.theme-dark ».
+   Les miennes étaient sur « .theme-dark » : moins spécifiques, donc perdantes.
+   On remonte d'un cran, et le trait des titres passe enfin à nos couleurs.
+   ===================================================================== */
+
+body.theme-dark, body.theme-light, body {
+  --color-accent-1: var(--color-accent-1) !important !important;
+  --color-accent-2: var(--h3-accent-color) !important !important;
+  --text-accent: var(--h2-accent-color) !important !important;
+  --text-accent-hover: var(--text-accent-hover) !important !important;
+  --h1-accent-color: var(--h1-accent-color) !important !important;
+  --h2-accent-color: var(--h2-accent-color) !important !important;
+  --h3-accent-color: var(--h3-accent-color) !important !important;
+  --h4-accent-color: var(--h4-accent-color) !important !important;
+  --h5-accent-color: var(--h5-accent-color) !important !important;
+  --h6-accent-color: var(--h6-accent-color) !important !important;
+}
+
+/* Les zones : on cible le texte des dossiers, pas seulement la ligne */
+
+/* Le titre de fichier en double : ceinture et bretelles, côté CSS aussi */
 body .inline-title,
 body .markdown-source-view .inline-title,
-body .markdown-preview-view .inline-title {
-  display: none !important;
+body .markdown-preview-view .inline-title { display: none !important; }
+
+/* =====================================================================
+   v10 — homogénéité des surfaces
+   Constat de Yanis : trois zones grises — en haut à gauche, en bas à gauche
+   (la barre du coffre) et sur le côté droit — qui jurent avec le fond bleu nuit.
+   Cause : ces panneaux sont semi-transparents, et le matériau clair du système
+   les traverse. On les rend opaques, dans le même ton que le reste.
+   Uniquement de la couleur de surface : aucune structure touchée.
+   ===================================================================== */
+
+body.theme-dark, body.theme-light, body {
 }
 
-/* ---- 5. Détails de finition ---- */
-.workspace-leaf-resize-handle { background-color: rgba(255, 255, 255, 0.05) !important; }
-a.internal-link { text-decoration: none; border-bottom: 1px solid currentColor; }
-.nav-file-title { color: #C3CCE2; }
-.nav-file-title.is-active { color: #FFFFFF !important; }
-.tag { border: none !important; border-radius: 999px; padding: 1px 9px; }
+/* La colonne d'icônes de gauche et celle de droite */
+body.theme-dark .side-dock-ribbon,
+body .side-dock-ribbon {
+  background-color: var(--e-panneau) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Les deux volets latéraux, y compris repliés */
+body.theme-dark .workspace-split.mod-left-split,
+body.theme-dark .workspace-split.mod-right-split,
+body .workspace-split.mod-left-split,
+body .workspace-split.mod-right-split {
+  background-color: var(--e-panneau) !important;
+}
+
+/* Les feuilles à l'intérieur des volets : un ton à peine plus clair, pour la profondeur */
+body.theme-dark .workspace-split.mod-left-split .workspace-leaf,
+body.theme-dark .workspace-split.mod-right-split .workspace-leaf,
+body.theme-dark .workspace-split.mod-left-split .workspace-tabs,
+body.theme-dark .workspace-split.mod-right-split .workspace-tabs {
+  background-color: var(--e-panneau-clair) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* La barre du coffre, en bas à gauche */
+body.theme-dark .workspace-sidedock-vault-profile,
+body .workspace-sidedock-vault-profile {
+  background-color: var(--e-panneau) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: 1px solid rgba(var(--e-lisere-rgb), 0.08) !important;
+}
+
+/* La bande d'onglets des volets latéraux seulement — jamais celle des notes */
+body.theme-dark .workspace-split.mod-left-split .workspace-tab-header-container,
+body.theme-dark .workspace-split.mod-right-split .workspace-tab-header-container {
+  background-color: var(--e-panneau) !important;
+}
+
+/* La barre d'état, en bas */
+body.theme-dark .status-bar,
+body .status-bar {
+  background-color: var(--e-panneau) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: 1px solid rgba(var(--e-lisere-rgb), 0.06) !important;
+}
+
+/* =====================================================================
+   v11 — le bord droit, et la fin des gris
+   Les trois zones grises venaient toutes de la même chose : un fond
+   semi-transparent, à travers lequel le matériau clair du système affleurait.
+   L'extrait « verre-natif » est désactivé. Ici, on couvre en plus tout ce qui
+   peut occuper le bord droit, au cas où il resterait un liseré.
+   Couleur uniquement — aucune structure, aucune barre d'onglets de notes.
+   ===================================================================== */
+
+body.theme-dark .side-dock-ribbon.mod-right,
+body .side-dock-ribbon.mod-right,
+body .workspace-split.mod-right-split,
+body .mod-right-split,
+body .workspace-split.mod-right-split .workspace-tabs,
+body .workspace-split.mod-right-split .workspace-leaf,
+body .workspace-split.mod-right-split .workspace-leaf-content,
+body .sidebar-toggle-button.mod-right,
+body .workspace-leaf-resize-handle {
+  background-color: var(--e-fond-alt) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Le fond de l'application : opaque, notre nuit bleue. Plus rien ne passe au bord. */
+body, .app-container, .horizontal-main-container {
+  background:
+    radial-gradient(1200px 820px at 10% -12%, rgba(var(--e-halo-rgb), 0.20), transparent 62%),
+    radial-gradient(900px 700px at 112% 18%, rgba(var(--h3-accent-color-rgb), 0.11), transparent 55%),
+    radial-gradient(1000px 900px at 45% 122%, rgba(var(--h5-accent-color-rgb), 0.07), transparent 60%),
+    var(--e-fond) !important;
+}
